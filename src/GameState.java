@@ -1,0 +1,173 @@
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+public class GameState {
+
+    private String label = "titleScreen";
+    private boolean[] inventory = new boolean[50];
+    private int[] vars = new int[50];
+    private String music = "";
+    private String image = "";
+    private JsonArray inventoryNames;
+
+    public GameState(JsonArray inventory) {
+        this.inventoryNames = inventory;
+    }
+
+    public String inventoryString() {
+        String invString = "";
+        boolean entered = false;
+
+        for (int i = 0; i < inventoryNames.size(); i++) {
+            if(inventory[i]) {
+                String addTo = (entered) ? ", " : "Inventory: ";
+                addTo += inventoryNames.get(i).getAsString();
+                invString += addTo;
+                entered = true;
+            }
+        }
+        if(invString.isEmpty()) { return "Inventory is empty."; }
+        return invString;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setimage(String image){
+        this.image = image;
+    }
+
+    public String getMusic() {
+        return music;
+    }
+
+    public void setMusic(String music){
+        this.music = music;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String newLabel) {
+        label = newLabel;
+    }
+
+    public void setImage(String newImg) {
+        image = newImg;
+    }
+
+    public int[] getVars() {
+        return vars;
+    }
+
+    public boolean[] getInventory() {
+        return inventory;
+    }
+
+    public void updateCheckpoint(GameState copyFrom) {
+        label = copyFrom.getLabel();
+        inventory = copyFrom.getInventory().clone();
+        vars = copyFrom.getVars().clone();
+        music = copyFrom.getMusic();
+        image = copyFrom.getImage();
+    }
+
+    public void giveItem(int itemNum) {
+        inventory[itemNum] = true;
+    }
+
+    public void removeItem(int itemNum) {
+        inventory[itemNum] = false;
+    }
+
+    public void variableMath(String statement) {
+
+        String[] parts = statement.split(" ");
+        int varNum = Integer.parseInt(parts[0].substring(1));
+        String operation = parts[1];
+        int numOperator = Integer.parseInt(parts[2]);
+
+        switch (operation) {
+            case "=":
+                vars[varNum] = numOperator;
+                break;
+            case "+":
+                vars[varNum] += numOperator;
+                break;
+            case "-":
+                vars[varNum] -= numOperator;
+                break;
+        }
+
+    }
+
+    public void playMusic(String fileName) {
+        music = fileName;
+    }
+
+    public void showImage(String fileName) {
+        image = fileName;
+    }
+
+    public boolean ifCondition(String condition) {
+        String[] parts = condition.split(" ");
+        int varNum = Integer.parseInt(parts[0].substring(1));
+        String operation = parts[1];
+        if(condition.charAt(0) == 'V') {
+            int numOperator = Integer.parseInt(parts[2]);switch (operation) {
+                case "=":
+                    return vars[varNum] == numOperator;
+                case "<":
+                    return vars[varNum] < numOperator;
+                case ">":
+                    return vars[varNum] > numOperator;
+                default:
+                    return true;
+            }
+        } else {
+            return (operation.equals("Owned")) ? inventory[varNum] : !inventory[varNum];
+        }
+    }
+
+    public JsonObject dataToJson() {
+        JsonArray jsVars = new JsonArray();
+        JsonArray jsInventory = new JsonArray();
+        JsonObject stateJSON = new JsonObject();
+
+        stateJSON.addProperty("label", label);
+        stateJSON.addProperty("image", image);
+        stateJSON.addProperty("music", music);
+        
+        for (int var : vars) { jsVars.add(var); }
+        for (boolean invItem : inventory) { jsInventory.add(invItem); }
+
+        stateJSON.add("variables", jsVars);
+        stateJSON.add("inventory", jsInventory);
+
+
+    // private String label = "titleScreen";
+    // private boolean[] inventory = new boolean[50];
+    // private int[] vars = new int[50];
+    // private String music = "";
+    // private String image = "";
+
+        return stateJSON;
+
+    }
+
+    public void restoreState(JsonObject loadedState) {
+        JsonArray jsonVars = loadedState.get("variables").getAsJsonArray();
+        JsonArray jsonInventory = loadedState.get("inventory").getAsJsonArray();
+        
+        label = loadedState.get("label").getAsString();
+        image = loadedState.get("image").getAsString();
+        music = loadedState.get("music").getAsString();
+
+        for(int i = 0; i < jsonVars.size(); i++) { vars[i] = jsonVars.get(i).getAsInt(); }
+        for(int i = 0; i < jsonInventory.size(); i++) { inventory[i] = jsonInventory.get(i).getAsBoolean(); }
+    }
+
+
+}
