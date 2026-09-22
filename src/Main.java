@@ -1,3 +1,18 @@
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+
+import java.util.Scanner;
+
+import javax.swing.JButton;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,9 +29,79 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    
+    static GameState[] gameStates = new GameState[2]; //[0] is current [1] is at checkpoint
+    static Scene scene = new Scene();
+    static String display = "";
+    static String[] strings = new String[10];
+    static JButton[] buttons = new JButton[10];
+    
+    
+
+    
     public Main() {
         initComponents();
+        
         jButton1.setText("Menu");
+        
+        buttons = new JButton[] {
+            jButton2,
+            jButton3,
+            jButton4,
+            jButton5,
+            jButton6,
+            jButton7,
+            jButton8,
+            jButton9,
+            jButton10
+        };
+        FileReader gameFile;
+        try {
+            gameFile = new FileReader(".\\gameData.json");
+            JsonObject gameData;
+            JsonArray inventory;
+        
+        JsonObject fullData = JsonParser.parseReader(gameFile).getAsJsonObject();
+       // JsonObject metaData = fullData.getAsJsonObject("metadata");
+        gameData = fullData.getAsJsonObject("mainData");
+        inventory = fullData.getAsJsonObject("mainData").getAsJsonArray("inventory");
+        gameStates[0] = new GameState(inventory);
+        gameStates[1] = new GameState(inventory);
+        Scanner in = new Scanner(System.in);
+        scene = new Scene (gameData, gameStates);
+        } catch(IOException e) {
+                e.printStackTrace();
+        }
+        
+
+    
+        //String gameTitle = metaData.get("title").getAsString();
+
+        
+
+
+        int num = 0;
+
+        strings = scene.setScene("titleScreen");
+        
+        updateScreen();
+        
+        
+    
+       
+    }
+    
+    private void updateScreen() {
+        //jLabel2.setText(strings[0]);
+        jLabel2.setText("<html>" + strings[0].replace("\n", "<br>") + "</html>");
+        for(int i = 1; i < strings.length; i++) {
+            if (!strings[i].isEmpty()) {
+                buttons[i-1].setText(strings[i]);
+                buttons[i-1].setVisible(true);
+            } else {
+                buttons[i-1].setVisible(false);
+            }
+        }
     }
 
     /**
@@ -32,9 +117,18 @@ public class Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,18 +158,6 @@ public class Main extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        jLabel3.setBackground(new java.awt.Color(102, 204, 255));
-        jLabel3.setText("jLabel3");
-        jLabel3.setOpaque(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 4.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(jLabel3, gridBagConstraints);
-
         jLabel4.setBackground(new java.awt.Color(51, 204, 255));
         jLabel4.setText("jLabel4");
         jLabel4.setOpaque(true);
@@ -95,6 +177,77 @@ public class Main extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jButton1, gridBagConstraints);
 
+        jPanel2.setBackground(new java.awt.Color(51, 204, 255));
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+
+        jButton3.setText("jButton3");
+
+        jButton4.setText("jButton4");
+
+        jButton5.setText("jButton5");
+
+        jButton6.setText("jButton6");
+
+        jButton7.setText("jButton7");
+
+        jButton8.setText("jButton8");
+
+        jButton9.setText("jButton9");
+
+        jButton10.setText("jButton10");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton7)
+                    .addComponent(jButton6)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9)
+                    .addComponent(jButton10))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton8)
+                .addGap(18, 18, 18)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton10)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel1.add(jPanel2, gridBagConstraints);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,6 +261,11 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        strings = scene.processChoice(1);        // TODO add your handling code here:
+        updateScreen();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,10 +294,19 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
