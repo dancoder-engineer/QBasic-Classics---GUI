@@ -8,10 +8,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
+import java.io.File;
 
 import java.util.Scanner;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import java.awt.Dimension;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -42,6 +46,11 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         
+        setSize(1024, 768);
+        setLocationRelativeTo(null); 
+        
+        
+        
         jButton1.setText("Menu");
         
         buttons = new JButton[] {
@@ -62,12 +71,15 @@ public class Main extends javax.swing.JFrame {
             JsonArray inventory;
         
         JsonObject fullData = JsonParser.parseReader(gameFile).getAsJsonObject();
-       // JsonObject metaData = fullData.getAsJsonObject("metadata");
+        JsonObject metaData = fullData.getAsJsonObject("metadata");
         gameData = fullData.getAsJsonObject("mainData");
         inventory = fullData.getAsJsonObject("mainData").getAsJsonArray("inventory");
-        gameStates[0] = new GameState(inventory);
-        gameStates[1] = new GameState(inventory);
+        gameStates[0] = new GameState(inventory, jLabel1);
+        gameStates[1] = new GameState(inventory, jLabel1);
         Scanner in = new Scanner(System.in);
+        
+        String gameTitle = metaData.get("title").getAsString();
+        setTitle(gameTitle);
         scene = new Scene (gameData, gameStates);
         } catch(IOException e) {
                 e.printStackTrace();
@@ -83,6 +95,7 @@ public class Main extends javax.swing.JFrame {
         int num = 0;
 
         strings = scene.setScene("titleScreen");
+        jLabel4.setText(gameStates[0].inventoryString());
         
         updateScreen();
         
@@ -93,15 +106,24 @@ public class Main extends javax.swing.JFrame {
     
     private void updateScreen() {
         //jLabel2.setText(strings[0]);
-        jLabel2.setText("<html>" + strings[0].replace("\n", "<br>") + "</html>");
+        //jLabel3.setText("<html>" + strings[0].replace("\n", "<br>") + "</html>");
+        int textWidth = jPanel5.getWidth() - 100;
+
+        jLabel3.setText(
+            "<html><body width='" + textWidth + "'>" +
+            strings[0].replace("\n", "<br>") +
+            "</body></html>"
+        );
+   
         for(int i = 1; i < strings.length; i++) {
             if (!strings[i].isEmpty()) {
-                buttons[i-1].setText(strings[i]);
+                buttons[i-1].setText("<html><div style='text-align:center;'>" + strings[i] + "</html>");
                 buttons[i-1].setVisible(true);
             } else {
                 buttons[i-1].setVisible(false);
             }
         }
+        jLabel4.setText("<html>" + gameStates[0].inventoryString() + "</html>");
     }
 
     /**
@@ -116,7 +138,6 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -129,44 +150,49 @@ public class Main extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1024, 768));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jPanel1ComponentResized(evt);
+            }
+        });
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setBackground(new java.awt.Color(0, 153, 255));
-        jLabel1.setText("ghghj");
+        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel1.setAlignmentY(0.4F);
+        jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(1, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 0.5;
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
-        jLabel2.setOpaque(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jLabel2, gridBagConstraints);
-
         jLabel4.setBackground(new java.awt.Color(51, 204, 255));
+        jLabel4.setFont(new java.awt.Font("Noto Sans JP", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("jLabel4");
         jLabel4.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 50.0;
-        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.weighty = 0.05;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
@@ -178,81 +204,123 @@ public class Main extends javax.swing.JFrame {
         jPanel1.add(jButton1, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(51, 204, 255));
+        jPanel2.setMinimumSize(new java.awt.Dimension(100, 207));
+        jPanel2.setPreferredSize(new java.awt.Dimension(150, 375));
+        jPanel2.setLayout(new java.awt.GridLayout(0, 1));
 
         jButton2.setText("jButton2");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setMaximumSize(new java.awt.Dimension(75, 55));
+        jButton2.setMinimumSize(new java.awt.Dimension(75, 55));
+        jButton2.setPreferredSize(new java.awt.Dimension(75, 55));
         jButton2.addActionListener(this::jButton2ActionPerformed);
+        jPanel2.add(jButton2);
 
         jButton3.setText("jButton3");
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setMaximumSize(new java.awt.Dimension(75, 55));
+        jButton3.setMinimumSize(new java.awt.Dimension(75, 55));
+        jButton3.setPreferredSize(new java.awt.Dimension(75, 55));
+        jButton3.addActionListener(this::jButton3ActionPerformed);
+        jPanel2.add(jButton3);
 
         jButton4.setText("jButton4");
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setMaximumSize(new java.awt.Dimension(75, 55));
+        jButton4.setMinimumSize(new java.awt.Dimension(75, 55));
+        jButton4.addActionListener(this::jButton4ActionPerformed);
+        jPanel2.add(jButton4);
 
         jButton5.setText("jButton5");
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.addActionListener(this::jButton5ActionPerformed);
+        jPanel2.add(jButton5);
 
         jButton6.setText("jButton6");
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.addActionListener(this::jButton6ActionPerformed);
+        jPanel2.add(jButton6);
 
         jButton7.setText("jButton7");
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.addActionListener(this::jButton7ActionPerformed);
+        jPanel2.add(jButton7);
 
         jButton8.setText("jButton8");
+        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton8.setMaximumSize(new java.awt.Dimension(150, 23));
+        jButton8.addActionListener(this::jButton8ActionPerformed);
+        jPanel2.add(jButton8);
 
         jButton9.setText("jButton9");
+        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton9.addActionListener(this::jButton9ActionPerformed);
+        jPanel2.add(jButton9);
 
         jButton10.setText("jButton10");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8)
-                .addGap(18, 18, 18)
-                .addComponent(jButton9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton10)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton10.addActionListener(this::jButton10ActionPerformed);
+        jPanel2.add(jButton10);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel1.add(jPanel2, gridBagConstraints);
+
+        jPanel5.setBackground(new java.awt.Color(51, 204, 255));
+        jPanel5.setMinimumSize(new java.awt.Dimension(2, 100));
+
+        jLabel3.setFont(new java.awt.Font("Noto Serif JP", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 0.1;
+        jPanel1.add(jPanel5, gridBagConstraints);
+
+        jLabel2.setText("   ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel1.add(jLabel2, gridBagConstraints);
+
+        jLabel5.setText("     ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel1.add(jLabel5, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,6 +334,57 @@ public class Main extends javax.swing.JFrame {
         strings = scene.processChoice(1);        // TODO add your handling code here:
         updateScreen();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        strings = scene.processChoice(2);        // TODO add your handling code here:
+        updateScreen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        strings = scene.processChoice(3);        // TODO add your handling code here:
+        updateScreen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        strings = scene.processChoice(4);        // TODO add your handling code here:
+        updateScreen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        strings = scene.processChoice(5);        // TODO add your handling code here:
+        updateScreen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        strings = scene.processChoice(6);        // TODO add your handling code here:
+        updateScreen();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        strings = scene.processChoice(7);        // TODO add your handling code here:
+        updateScreen();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        strings = scene.processChoice(8);        // TODO add your handling code here:
+        updateScreen();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        strings = scene.processChoice(9);        // TODO add your handling code here:
+        updateScreen();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized
+
+     int textWidth = jPanel5.getWidth() - 40;
+     
+     jLabel3.setText(
+            "<html><body width='" + textWidth + "'>" +
+            strings[0].replace("\n", "<br>") +
+            "</body></html>"
+        );
+    }//GEN-LAST:event_jPanel1ComponentResized
 
     /**
      * @param args the command line arguments
@@ -305,8 +424,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }

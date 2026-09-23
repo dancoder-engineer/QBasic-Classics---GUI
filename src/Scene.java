@@ -79,6 +79,9 @@ public class Scene {
 
 
     private void changeScene(String sceneName) {
+       
+        
+        
         labels.clear();
         scene = gameData.getAsJsonObject(sceneName);
         gameStates[0].setLabel(sceneName);
@@ -86,7 +89,6 @@ public class Scene {
         if (scene.has("Image")) {
             String imgName = scene.get("Image").getAsString();
             gameStates[0].setImage(imgName);
-            //TODO logic to show image when on a platform that supports it 
         }
 
         if(scene.has("Junction")) {

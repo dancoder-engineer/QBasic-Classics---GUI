@@ -1,5 +1,9 @@
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
+import javax.swing.JLabel;
 
 public class GameState {
 
@@ -9,10 +13,14 @@ public class GameState {
     private String music = "";
     private String image = "";
     private JsonArray inventoryNames;
+    
+    private JLabel picLabel;
 
-    public GameState(JsonArray inventory) {
+    public GameState(JsonArray inventory, JLabel picLabel) {
         this.inventoryNames = inventory;
+        this.picLabel = picLabel;
     }
+    
 
     public String inventoryString() {
         String invString = "";
@@ -34,9 +42,35 @@ public class GameState {
         return image;
     }
 
-    public void setimage(String image){
-        this.image = image;
-    }
+public void setImage(String image) {
+    this.image = image;
+
+    ImageIcon icon = new ImageIcon("./images/" + image);
+
+    Image img = icon.getImage();
+
+    int labelWidth = picLabel.getWidth();
+    int labelHeight = picLabel.getHeight();
+
+    double scale = Math.min(
+        (double) labelWidth / icon.getIconWidth(),
+        (double) labelHeight / icon.getIconHeight()
+    );
+
+    int width = (int) (icon.getIconWidth() * scale);
+    int height = (int) (icon.getIconHeight() * scale);
+    picLabel.setHorizontalAlignment(JLabel.CENTER);
+    picLabel.setVerticalAlignment(JLabel.CENTER);
+    
+
+    Image scaled = img.getScaledInstance(
+        width,
+        height,
+        Image.SCALE_SMOOTH
+    );
+
+    picLabel.setIcon(new ImageIcon(scaled));
+}
 
     public String getMusic() {
         return music;
@@ -52,10 +86,6 @@ public class GameState {
 
     public void setLabel(String newLabel) {
         label = newLabel;
-    }
-
-    public void setImage(String newImg) {
-        image = newImg;
     }
 
     public int[] getVars() {
