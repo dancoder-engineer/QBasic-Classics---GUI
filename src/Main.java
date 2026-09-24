@@ -275,7 +275,7 @@ public class Main extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(51, 204, 255));
         jPanel5.setMinimumSize(new java.awt.Dimension(2, 100));
 
-        jLabel3.setFont(new java.awt.Font("Noto Serif JP", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Noto Serif JP", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("jLabel3");
 
@@ -290,9 +290,7 @@ public class Main extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();

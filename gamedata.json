@@ -1,0 +1,1891 @@
+
+{
+    
+
+    "metadata": {
+        "title": "Journey to Defication: The Shopping Center of Destiny",
+        "Images": false,
+        "defaultImages": false,
+        "Inventory": true,
+        "noOfVariables": 13
+    },
+
+    "mainData": {
+
+        "inventory": [
+            "Old Hardened Gum",
+            "Fresh Stick of Gum",
+            "Lottery Ticket",
+            "One Dollar",
+            "Orange Juice",
+            "Vodka",
+            "Diet Soda",
+            "Iced Tea",
+            "Water",
+            "Alprazolam",
+            "Pot"
+        ],
+
+        "titleScreen": {
+            "text": [
+                "Journet to Defication:",
+                "The Shopping Center of Destiny"
+            ],
+            "options": ["Start"],
+            "labels": ["Intro"],
+            "commands": [
+                ["Checkpoint"], 
+                ["Variable Math", "V0 = 7"]
+            ]
+        },
+
+
+
+        "Intro": {
+            "text": [
+                "You are driving getaway for your notorious computer hacker son when you feel the urge to deficate.",
+                "",
+                "'Oh no, you have to poop again? I still remember the last time the smell was in my nose for weeks, torturing me.' he says.",
+                "",
+                "The PTSD from the smell torture makes your son go catatonic. You're gonna have to calm him down somehow. In any case, you pull over to the shopping center coming up on your right."
+            ],
+            "options": ["Next"],
+            "labels": ["outside"]
+        },
+
+
+        "outside": {
+            "Image": "outside.png",
+            "text": [
+                "You are now in front of the shopping center. Before you lies a tattoo shop, a bodega, and a pharmacy. You can also go back into your car or behind the shopping center if you want.",
+                "",
+                "Where do you go?"
+              ],
+            "options": [
+                "The tattoo shop",
+                "The bodega",
+                "The pharmacy",
+                "Behind the building",
+                "Back into your car"
+            ],
+            "labels": ["tattooShop", "bodega", "pharmacy", "behindBuildingJunction", "carMain"],
+            "commands": [
+                ["Stop Music"],
+                ["Checkpoint"]
+            ]
+        },
+
+
+        "carMain": {
+            "text": [
+                "You're in your car. This thing can use a good cleaning, but that may just have to wait until you take this poop."
+              ],
+            "options": [
+                "Look in the glove compartment",
+                "Look between the seats",
+                "Talk to your son"
+            ],
+            "labels": ["gloveCompartmentJunction", "seatJunction", "sonJunction"],
+            "commands": [
+                ["Add Label If", "V1 = 1", "Medicate your son", "whichDrug"],
+                ["Add Label If", "V0 = 7", "Go back outside", "outside"]
+            ]
+
+        },
+
+        "sonJunction": {
+            "Junction":[ 
+                ["V1 = 2", "remindNeedLocation"],
+                ["V1 = 3", "finalOperation", "talkCatatonic"]
+            ]
+        },
+
+        "talkCatatonic": {
+            "text": [
+                "You try talking to your son, but he's too catatonic to speak at the moment."
+              ],
+            "options": ["Back"],
+            "labels": ["carMain"]
+        },
+
+        "whichDrug": {
+            "text": [
+                "Which drug do you give him?"
+              ],
+            "options": [],
+            "labels": [],
+            "commands": [
+                ["Add Label If", "I9 Owned", "Alprazolam", "sonAlprazolam"],
+                ["Add Label If", "I10 Owned", "Pot", "sonPot"]
+            ]
+        },
+
+        "sonAlprazolam": {
+            "text": [
+                "You shove some alprazolam into your son's mouth, moving his jaw up and down to grind it to a powder before shoving it down his throat. Unfortunately, you forgot that your son is allergic to alprazolam. His throat closes up, he stops breathing, and he exits this world, leaving a poop behind as he does. The nerve of this kid, pooping before you!",
+                "",
+                "Game Over"
+              ],
+            "commands": [
+                ["Game Over"],
+                ["Play SFX", "gameover.wav"], ["Stop Music"]
+            ]
+        },
+
+        "sonPot": {
+            "text": [
+                "You decide to give your son the pot, but how? He can't smoke it himself. You could cook it into a brownie, but he wouldn't be able to eat it on his own. You decide to smoke the pot yourself and make the car into a hotbox.",
+                "",
+                "You tear off a piece of paper from your son's notebook. He won't miss this one that says Cayman Islands bank encryption keys.",
+                "",
+                "You wrap the pot up in the paper, light it up using your car's cigarette lighter, and..."
+              ],
+            "options": ["Next"],
+            "labels": ["sonIsLucid"],
+            "commands": [
+                ["Variable Math", "V1 = 2"],
+                ["Remove Item", 10]
+            ]
+        },
+
+        "sonIsLucid": {
+            "text": [
+                "'What smells good?' you hear a voice from the back seat.",
+                "",
+                "'George!' you say, happily. 'you're lucid again!'",
+                "",
+                "'What happened?'",
+                "",
+                "'You went catatonic when I told you I have to poop.'",
+                "",
+                "'And everything's alright now because you went, right?",
+                "",
+                "You explain everything that's happened so far to him."
+              ],
+            "options": ["Next"],
+            "labels": ["strategyMeeting1"]
+        },
+
+        "strategyMeeting1": {
+            "text": [
+                "'And I need your help to come up with a plan so I can poop,' save the tattoo guy, and prevent that terrosist attack all in one fell swoop.' you request of him.",
+                "",
+                "'Ok, let's think this through. You've been to all these stores, which one do you think has the best chance of letting you use their bathroom?'"
+              ],
+            "options": [
+                "The Bodega",
+                "The Tattoo Shop",
+                "The Pharmacy",
+                "Maybe I can go to the drug dealer's house"
+            ],
+            "labels": [
+                "sm11",
+                "strategyMeeting2",
+                "sm13",
+                "sm14"
+            ]
+        },
+
+        "sm11": {
+            "text": [
+                "'Aren't they planning a terrorist attack out of that bathroom? If they did, they probably disabled all the plumbing, so I'm not sure that's a good idea.'",
+                "",
+                "'You're right..."
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting1"]
+        },
+
+
+        "sm13": {
+            "text": [
+                "'That guy hates your guts. He's liable to be waiting outside the bathroom with a gun when you get out. What good are clear bowels if you're dead.'",
+                "",
+                "'I hadn't thought of that... This is why I need your help.'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting1"]
+        },
+
+        "sm14": {
+            "text": [
+                "'Are you sure you wanna go someplace other than this shopping center? I thought you wanted to save the tattoo guy and stop the terrorists while you're at it.'",
+                "",
+                "'Oh...'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting1"]
+        },
+
+        "strategyMeeting2": {
+            "text": [
+                "'The tattoo shop guy seems nice enough, but he keeps using the bathroom. It'd never work.'",
+                "",
+                "'What if we just made it so that he'd have to let you poop?' your son says hintingly.",
+                "",
+                "How would you do that?"
+              ],
+            "options": [
+                "Immobilize the tattoo guy",
+                "Make him not need to keep using the bathroom",
+                "Annex the tattoo shop"
+            ],
+            "labels": [
+                "sm21",
+                "strategyMeeting3",
+                "sm23"
+            ]
+        },
+
+        "sm21": {
+            "text": [
+                "'What if we were to go in there and break his knees? Then he'd be unable to stop me from using the bathroom.' you say diabolically.",
+                "",
+                "'And how would that make you any better than the Thunder Kings?'",
+                "",
+                "'Urk-'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting2"]
+        },
+
+        "sm23": {
+            "text": [
+                "'Annex it? You and what army?' your son mocks.",
+                "",
+                "'You! We go in there and show him our might!'",
+                "",
+                "'I'm gonna have to be a conscientious objector on this one.' he refuses.",
+                "",
+                "'Ungrateful brat...'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting2"]
+        },
+
+        "strategyMeeting3": {
+            "text": [
+                "'I guess if he didn't need to keep using the bathroom, that would free it up for others to use it.'",
+                "",
+                "'Right! So how can we make it so that he doesn't keep needing to use the bathroom' your son asks Socratically."
+              ],
+            "options": [
+                "Stop the Thunder Kings",
+                "Give him bowel suppressants",
+                "Install a second bathroom in his shop."
+            ],
+            "labels": [
+                "strategyMeeting4",
+                "sm32",
+                "sm33"
+            ]
+        },
+
+        "sm32": {
+            "text": [
+                "'Why not give him some bowel suppressants so he can hold his poop?'",
+                "",
+                "'You got any money on you to buy any?'",
+                "",
+                "'...No.'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting3"]
+        },
+
+        "sm33": {
+            "text": [
+                "'Let's build him a second bathroom in his shop... Wait, no. he'd never go for it because the increased value of the shop due to having a second bathroom would cause his rent to increase.'",
+                "",
+                "'That's why you think it's a bad idea?' you son says, rolling his eyes."
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting3"]
+        },
+
+        "strategyMeeting4": {
+            "text": [
+                "'If I stop the Thunder Kings, the tattoo guy won't need to keep pooping out of fear, and his bathroom will be free for all to use.'",
+                "",
+                "'Stop the Thuder Kings? I read that article in yesterday's paper about them. They're like a force of nature. How would we be able to stop them from killing anybody?'"
+              ],
+            "options": [
+                "Smooth over the situation",
+                "Have them arrested",
+                "Kill them"
+            ],
+            "labels": [
+                "sm41",
+                "sm42",
+                "strategyMeeting5"
+            ]
+        },
+
+        "sm41": {
+            "text": [
+                "'Let's send them a nice gift basket in the tattoo guy's name, complete with a heartfelt greeting card that communicates how sorry he is. Maybe that'll make them forgive him.'",
+                "",
+                "'That'll work.'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting4"]
+        },
+
+        "sm42": {
+            "text": [
+                "'Let's call the cops and have them all arrested before they can kill him.' you say as if you just thought of something no one else ever has.",
+                "",
+                "'Do you actually believe you just thought of something no one else ever has?' you son asks, bursting your bubble. 'I'm sure they've greased enough palms that they could be the ones doing that terrorist attack and the cops would look the other way.'",
+                "",
+                "'I guess..."
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting4"]
+        },
+
+        "strategyMeeting5": {
+            "text": [
+                "'Killing them? I think we can manage that.' your son says thoughtfully. 'But what weapon would we use to do that? It would have to be a powerful one.'"
+              ],
+            "options": [
+                "Drugs",
+                "A missile",
+                "Bacteria laden gum"
+            ],
+            "labels": [
+                "sm51",
+                "needHideoutLocation",
+                "sm53"
+            ]
+        },
+
+        "sm51": {
+            "text": [
+                "'We can drop off some overly effective drugs that'll kill them all dead in a few minutes.' you say as if this is something you'd actually be able to do.",
+                "",
+                "'Where would we get the drugs? Where would we drop them off to? What would we do when the survivors came after us, because not ALL of them are going to do the drugs, and that's if any of them decide to do some drugs that were just randomly dropped off on their doorstep.'",
+                "",
+                "'...Maybe that plan wasn't my best work...'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting5"]
+        },
+
+        "sm53": {
+            "text": [
+                "'I have this piece of bacteria laden, hardened gum I found in the glove compartment. Maybe we can get them to chew it.'",
+                "",
+                "'The whole gang's gonna chew A piece of gum?'",
+                "",
+                "'Ugh...'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting5"]
+        },
+
+        "strategyMeeting6": {
+            "text": [
+                "'We can use a missile! Don't those terrorists have one?'",
+                "",
+                "'And just how would WE use that missile?'"
+              ],
+            "options": [
+                "Reroute it",
+                "Mail it to the Thunder Kings",
+                "Make the Thunder Kings go to the bodega"
+            ],
+            "labels": [
+                "needHideoutLocation",
+                "sm62",
+                "sm63"
+            ]
+        },
+
+        "sm62": {
+            "text": [
+                "'We can mail it to the location. My cousin works for the post office, so he mails my packages for free.'",
+                "",
+                "'And just how are we gonna GET the missile to the post office to be mailed?'",
+                "",
+                "'Ask one of those app delivery drivers to bring it there for us? No..."
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting6"]
+        },
+
+        "sm63": {
+            "text": [
+                "'Maybe if the Thunder Kings get thirsty enough, they'll stop at",
+                "the bodega and we can make the missile blow up while they're",
+                "there.'",
+                "",
+                "'But wouldn't that blow up the tattoo shop also?",
+                "",
+                "'Yeah...'"
+              ],
+            "options": ["Back"],
+            "labels": ["strategyMeeting6"]
+        },
+
+        "needHideoutLocation": {
+            "text": [
+                "'We can reroute the missile at the Thunder Kings' hideout.' you say.",
+                "",
+                "'How are we going to do that?' your son asks",
+                "",
+                "'That phone call said the coordinates to route the missile to are going to be sent to a computer in the bodega's bathroom. If a computer hacker so notorious he's on the FBI's ten most wanted list were to get in there, I bet rerouting it to a different location would be a piece of cake!'",
+                "",
+                "'Ok, but we need the location of the Thunder Kings' hideout. I need to know where to reroute it TO after all.'",
+                "",
+                "'I remember yesterday's newspaper had a story about them, with the location and everything. I just need to find somewhere in this shopping center where they'd have yesterday's paper.'",
+                "",
+                "'Well, if you get it, we can do this!' your son says."
+              ],
+            "options": ["Back"],
+            "labels": ["carMain"]
+        },
+
+        "remindNeedLocation": {
+            "text": [
+                "'Did you get the location of the Thunder King's hideout?' your son asks.",
+                "",
+                "'Not yet. Just need to find a copy of yesterday's paper.'",
+                "",
+                "'Come back when you know where the hideout is and I'll hack that computer."
+              ],
+            "options": ["Back"],
+            "labels": ["carMain"]
+        },
+
+        "gloveCompartmentJunction": {
+            "Junction": [["I0 Owned", "gloveCompartmentEmpty", "takeGum"]]
+        },
+
+        "takeGum": {
+            "text": [
+                "You find an already chewed piece of gum in the glove compartment. Wondering if it'll be useful, you take it with you.",
+                "",
+                "Kinda makes you hungry for gum."
+              ],
+            "options": ["Back"],
+            "labels": ["carMain"],
+            "commands": [
+                ["Give Item", 0],
+                ["Variable Math", "V2 + 1"]
+            ]
+        },
+
+
+         "gloveCompartmentEmpty": {
+            "text": [
+                "The glove compartment is now empty."
+              ],
+            "options": ["Back"],
+            "labels": ["carMain"]
+        },
+
+        "seatJunction": {
+            "Junction": [
+                ["I2 Owned", "seatEmpty", "takeTicket"]
+            ]
+        },
+
+        "takeTicket": {
+            "text": [
+                "There's a lottery ticket from 364 days ago in between the seats. These things are only good for a year after you buy them, so you should probably check if it's a winner asap."
+              ],
+            "options": ["Back"],
+            "labels": ["carMain"],
+            "commands": [
+                ["Give Item", 2],
+                ["Variable Math", "V3 = 1"]
+            ]
+        },
+
+        "seatEmpty": {
+            "text": [
+                "There's only lint between the car seats now, and you don't see how taking that with you could be of any benefit.",
+                "",
+                "And besides, if you need lint, you have all you need in your belly button."
+              ],
+            "options": ["Back"],
+            "labels": ["carMain"]
+        },
+
+        "bodega": {
+            "text": [
+                "This is a run down bodega that smells kinda bad. The owner is a good ol' boy who greets you as you come in",
+                "",
+                "'How y'all doin. If y'all need anythin' don't hesitate to ask.' He says warmly.",
+                "",
+                "What do y'all, I mean 'you' do?"
+              ],
+            "options": [],
+            "labels": [],
+            "commands": [
+                ["Play Music", "bodega.wav"],
+                ["Add Label If", "V3 = 1", "Show your lottery ticket to the clerk", "mustCheckMachine"],
+                ["Add Label If", "V4 < 2", "Buy a drink", "drinkJunction"],
+                ["Add Label If", "V4 = 2", "Exchange your drink for another one", "exchangeDrink"],
+                ["Add Label If", "V4 = 3", "Buy a drink", "drinkNoMoney"],
+                ["Add Label If", "V0 = 7", "Ask to go to the bathroom", "bodegaBathroomJunction"],
+                ["Add Label If", "V1 = 2", "Ask for a copy of yesterday's paper", "noYesterdaysPaperAtBodega"],
+                ["Add Label If", "V0 = 7", "Go back outside", "outside"]
+            ]
+        },
+
+        "drinkJunction": {
+            "Junction": [["I3 Owned", "buyDrinkFirstTime", "drinkNoMoney"]]
+        },
+
+        "bodegaBathroomJunction": {
+            "Junction": [["V3 < 2", "cantGoToBodegaBathroom", "dontWantToGoToBodegaBathroom"]]
+        },
+
+
+        "dontWantToGoToBodegaBathroom": {
+            "text": [
+                "After hearing that the clerk is a terrorist and that he's going to launch an attack from that bathroom tonight, you figure he'd probably kill you on the spot if you even thought about going into that bathroom, and as such you bite your tongue."
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"]
+        },
+
+        "cantGoToBodegaBathroom": {
+            "text": [
+                "'Sawreh, I can't let y'all go to the bathroom. We don't let the public use it, ya hear?'",
+                "",
+                "You want to punch this guy out for being the kind of person who would stop someone from going to the bathroom in their hour of need, but going to jail doesn't exactly seem pleasant, so you decide to bottle up your anger, which is super healthy!"
+            ],
+            "options": ["Back"],
+            "labels": ["bodega"]
+        },
+
+
+        "noYesterdaysPaperAtBodega": {
+            "text": [
+                "'Excuse me, would you happen to have a copy of yesterday's newspaper?' you inquire",
+                "",
+                "'Sawreh but we tie the papers to a lasso and toss it into the dumpster at the end of each day.' the bodega owner says. 'If'n y'all want today's paper, we got plenty of those.'",
+                "",
+                "'Nah, no thanks.'"
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"]
+        },
+
+        "drinkNoMoney": {
+            "text": [
+                "'I can sure sell y'all a drink. That'll be one dollar.'",
+                "",
+                "You realize you don't have any money and apologize",
+                "",
+                "'Not at all. If y'all get some money, then y'all come back now, ya hear?"
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"]
+        },
+
+
+        "mustCheckMachine": {
+            "text": [
+                "You pull out your lottery ticket",
+                "",
+                "'I'd like to check if this lottery ticket is a winner.' You say",
+                "",
+                "'I'd certainly like ta help y'all, but this here lottery checker machine is broken.'",
+                "",
+                "'Please? It's going to expire tomorrow. If I don't check it today, I may already be a winner, but it will all have been for naught.'",
+                "",
+                "'Alright, I'll go call tech support. Y'all just wait there for me to come back.' the clerk replies with a sigh."
+              ],
+            "options": ["Next"],
+            "labels": ["aloneInStore"]
+        },
+
+        "aloneInStore": {
+            "text": [
+                "The clerk takes the lottery ticket checker machine to the back of the store, leaving you alone.",
+                "",
+                "You think about stuffing some of the merchandise in your pocket while you have no chance of getting caught, but the sudden ringing of the phone gives you pause.",
+                "",
+                "What do you do?"
+              ],
+            "options": [
+                "Steal some candy anyway. A mere phone means nothing to me!",
+                "Make for the bathroom while the clerk isn't around to prevent you.",
+                "Answer the phone. It's good manners to help out if you're a guest"
+            ],
+            "labels": [
+                "stealWhat",
+                "bodegaBathroomDeath",
+                "phoneCallScene"
+            ]
+        },
+
+        "stealWhat": {
+            "text": [
+                "You decide to steal something! The endorphins rush through your bloodstream like you want to rush to the bathroom. This is gonna be epic!",
+                "",
+                "What do you steal?"
+              ],
+            "options": [
+                "A candy bar.",
+                "Some chocolate covered nuts.",
+                "A muffin."
+            ],
+            "labels": ["beenCaughtStealing", "beenCaughtStealing", "beenCaughtStealing"]
+        },
+
+        "beenCaughtStealing": {
+            "text": [
+                "You try putting it in your pocket, but it turns out that a cop walking over to the donut shop in the next shopping center was passing right in front of the bodega as you did. He runs in gun drawn.",
+                "",
+                "'Alright, punk! Don't move!'",
+                "",
+                "You deem it a good idea to disobey him and try to run out of the bodega. Unfortunately, since he's standing in the doorway, he takes this action to be indicitive of you trying to attack him. He shoots you dead.",
+                "",
+                "Game Over."
+              ],
+            "commands": [
+                ["Game Over"],
+                ["Play SFX", "gameover.wav"], ["Stop Music"]
+            ]
+        },
+
+        "bodegaBathroomDeath": {
+            "text": [
+                "'The clerk's gone, no one can stop me!' you say as you make for the bathroom!",
+                "",
+                "You sit down and take the most relieving poop of your life. However, just as you're doing that, a missile shoots out of the toilet and relieves of your life.",
+                "",
+                "Game Over."
+              ],
+            "commands": [
+                ["Game Over"],
+                ["Play SFX", "gameover.wav"], ["Stop Music"]
+            ]
+        },
+
+        "phoneCallScene": {
+            "text": [
+                "'Hello?' you say as you pick up the phone.",
+                "",
+                "'Say nuthin' and listen, y'all store might be bugged. After this here call, I'll be sending instructions to the computer in the bathroom of y'all bodega to launch the missile stored under y'all toilet at city hall at 8pm today, just as that there international peace summit is getting underway!'",
+                "",
+                "'The price of oil will skyrocket, and then we'll be able to sell the oil under the ranch for billions! HAHAHAHAHAHAHAHAHAHA!!!'",
+                "",
+                "With that, the caller hangs up, and even though the shock of hearing what you just did renders you barely able to move your body, you manage to hang up the phone you were using as well."
+              ],
+            "options": ["Next"],
+            "labels": ["getMoney"]
+        },
+
+        "getMoney": {
+            "text": [
+                "Just as you're reeling from having learned of a terrorist attack the clerk comes back.",
+                "",
+                "'Awright, I managed to fix this here machine, and it looks like y'all won a dollar, so here y'all go.",
+                "",
+                "You take the dollar"
+              ],
+            "options": ["Next"],
+            "labels": ["bodega"],
+            "commands": [
+                ["Give Item", 3],
+                ["Remove Item", 2],
+                ["Variable Math", "V3 = 2"],
+                ["Variable Math", "V4 = 1"]
+            ]
+        },
+
+        "buyDrinkFirstTime": {
+            "text": [
+                "'I wouldn't mind buying something to drink.'",
+                "",
+                "'And I wouldn't mind selling y'all one. Just give me back that that there dollar I gave you for winning the lottery and I'll give you whatever drink y'all want.",
+                "",
+                "You comply. What drink do you want?"
+              ],
+            "options": [
+                "A bottle of water",
+                "A diet soda",
+                "An iced tea",
+                "A bottle of orange juice",
+                "A little bottle of vodka"
+            ],
+            "labels": [
+                "buyWater",
+                "buyDietSoda",
+                "buyIcedTea",
+                "buyOrangeJuice",
+                "buyVodka"
+            ],
+            "commands": [
+                ["Remove Item", 3],
+                ["Variable Math", "V4 = 2"]
+            ]
+        },
+
+        "exchangeDrink": {
+            "text": [
+                "'I'd like to exchange this drink for a different one.' you say as you give your drink back to the clerk.",
+                "",
+                "'Of course, what would y'all like?"
+              ],
+            "options": [
+                "A bottle of water",
+                "A diet soda",
+                "An iced tea",
+                "A bottle of orange juice",
+                "A little bottle of vodka"
+            ],
+            "labels": [
+                "buyWater",
+                "buyDietSoda",
+                "buyIcedTea",
+                "buyOrangeJuice",
+                "buyVodka"
+            ],
+            "commands": [
+                ["Remove Item", 4],
+                ["Remove Item", 5],
+                ["Remove Item", 6],
+                ["Remove Item", 7],
+                ["Remove Item", 8]
+            ]
+        },
+
+        "buyWater": {
+            "text": [
+                "'I'll take a bottle of water.'",
+                "",
+                "'Here y'all go, andust remember, this here bodega has the most generous return policy in the world. If y'all ain't drank any of that there drink, y'all can bring back and exchange it for any other drink we have here.",
+                "",
+                "Taking your purchase, you thank the merchant and walk away."
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"],
+            "commands": [
+                ["Give Item", 8]
+            ]
+        },
+
+        "buyDietSoda": {
+            "text": [
+                "'I'll take a diet soda.'",
+                "",
+                "'Here y'all go. Just be careful when you put the cap back on. They changed the caps and now it's hard to reseal them, and just remember, this here bodega has the most generous return policy in the world. If y'all ain't drank any of that there drink, y'all can bring back and exchange it for any other drink we have here.",
+                "",
+                "Taking your purchase, you thank the merchant."
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"],
+            "commands": [
+                ["Give Item", 6]
+            ]
+        },
+
+        "buyIcedTea": {
+            "text": [
+                "'I'll take an iced tea.'",
+                "",
+                "'Here y'all go, and just remember, this here bodega has the most generous return policy in the world. If y'all ain't drank any of that there drink, y'all can bring back and exchange it for any other drink we have here.",
+                "",
+                "Taking your purchase, you thank the merchant."
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"],
+            "commands": [
+                ["Give Item", 7]
+            ]
+        },
+
+        "buyOrangeJuice": {
+            "text": [
+                "'I'll take an orange juice.'",
+                "",
+                "'Here y'all go, and just remember, this here bodega has the most generous return policy in the world. If y'all ain't drank any of that there drink, y'all can bring back and exchange it for any other drink we have here.",
+                "",
+                "Taking your purchase, you thank the merchant."
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"],
+            "commands": [
+                ["Give Item", 4]
+            ]
+        },
+
+        "buyVodka": {
+            "text": [
+                "'I'll take a little bottle of vodka.'",
+                "",
+                "'Here y'all go, and just remember, this here bodega has the most generous return policy in the world. If y'all ain't drank any of that there drink, y'all can bring back and exchange it for any other drink we have here.",
+                "",
+                "Taking your purchase, you thank the merchant."
+              ],
+            "options": ["Back"],
+            "labels": ["bodega"],
+            "commands": [
+                ["Give Item", 5]
+            ]
+        },
+
+
+        "tattooShop": {
+            "text": [
+                "You walk into the tattoo shop to see a 6 foot tall, 250 pound man with not a drop of fat on him, covered in tattoos that make him look like the last man on earth you'd ever want to mess with.",
+                "",
+                "...All curled up in a fetal position whimpering in the corner.",
+                "",
+                "What do you do?"
+              ],
+            "options": [],
+            "labels": [],
+            "commands": [
+                ["Play Music", "tattooshop.wav"],
+                ["Add Label If", "V5 = 0", "Ask the man what's wrong", "tattooShopStory"],
+                ["Add Label If", "V5 = 1", "Try to comfort the man", "tattooShopComforting"],
+                ["Add Label If", "V0 = 7", "Take a piece of candy from the dish on the counter", "tattooCandyJunction"],
+                ["Add Label If", "V0 = 7", "Ask to use the bathroom", "tryTattooShopBathroom"],
+                ["Add Label If", "V0 = 7", "Try to get a tattoo", "tryTattoo"],
+                ["Add Label If", "V0 = 7", "Go back outside", "outside"]
+            ]
+        },
+
+        "tryTattooShopBathroom": {
+            "text": [
+                "'Sorry,' the tattoo artist says, 'I've been pooping my pants all day out of fear. I need to keep the bathroom open for myself.'"
+              ],
+            "options": ["back"],
+            "labels": ["tattooShop"]
+        },
+
+        "tattooShopStory": {
+            "text": [
+                "'So, uh,.. What's with the fetal position' you ask.",
+                "",
+                "'I'm dead! I'm a dead man!' he replies",
+                "",
+                "'You look plenty alive to me.' you retort.",
+                "",
+                "'For the next few hours.'",
+                "",
+                "'How's that?'"
+              ],
+            "options": ["Next"],
+            "labels": ["tattooShopStory2"],
+            "commands": [
+                ["Play Music", "tattooshopstory.wav"]
+            ]
+        },
+
+        "tattooShopStory2": {
+            "text": [
+                "'The Thunder Kings are gonna be here soon.'",
+                "",
+                "'That biker gang? I remember hreading about them in the paper, but why would they be coming to kill you?'",
+                "",
+                "'I kind of pissed them off...'",
+                "",
+                "'How?'"
+              ],
+            "options": ["Next"],
+            "labels": ["tattooShopStory3"]
+        },
+
+        "tattooShopStory3": {
+            "text": [
+                "'One of them came in looking for a tattoo. He asked me to make it say I am a bad boy in Japanese. I actually lived in japan and studied the art of tattooistry under one of their country's premier bousouzokus, so I knew that a real Japanese biker would have it say 俺はワルだ！ (ore wa waru da,) and gave him that tattoo. Only problem was that he had AI translate it beforehand and that told him it was 僕は悪い男の子です。 (boku wa warui otoko no ko desu.'"
+              ],
+            "options": ["Next"],
+            "labels": ["tattooShopStory4"]
+        },
+
+        "tattooShopStory4": {
+            "text": [
+                "'Why didnt you ask him before and then make it say that?",
+                "",
+                "'Because that's something a five year old boy would say about himself. No one in their head would want that on their body.'",
+                "",
+                "'And now because of that, your brain's not going to be in your head?' you quip back, thinking yourself a master of wordplay."
+              ],
+            "options": ["Next"],
+            "labels": ["tattooShopStory5"]
+        },
+
+        "tattooShopStory5": {
+            "text": [
+                "'So, anyway, they gave e 24 hours to make my peace with the world before they come and kill me. That would make my time of death 8pm tonight. Man this sucks.' He says, putting his thumb in his mouth and sucking like his life depended on it."
+              ],
+            "options": ["Back"],
+            "labels": ["tattooShop"],
+            "commands": [
+                ["Variable Math", "V5 = 1"]
+            ]
+        },
+
+        "tattooShopComforting": {
+            "text": [
+                "'There, there. Dying's not so bad. In fact, in this economy, its quite common for the living to envy the dead.' you say in an attempt to comfort the man. The fact that his crying only intensifies shows that said attempt was a massive failure."
+              ],
+            "options": ["Back"],
+            "labels": ["tattooShop"]
+        },
+
+        "tryTattoo": {
+            "text": [
+                "The guy is trembling something fierce. There's no way he's going to be able to keep his hand steady enough to draw muchof anything."
+              ],
+            "options": ["Back"],
+            "labels": ["tattooShop"]
+        },
+
+        "tattooCandyJunction": {
+            "Junction": [
+                ["V6 = 0", "tattooCandySecondJunction", "alreadyTookFreshGum"]
+            ]
+        },
+
+        "tattooCandySecondJunction": {
+            "Junction": [
+                ["V5 = 0", "noTattooCandyYet", "getTattooCandy"]
+            ]
+        },
+
+        "alreadyTookFreshGum": {
+            "text": [
+                "You think about asking for another piece of candy, but you've already taken one, and you don't want to be greedy, so you keep your mouth shut."
+              ],
+            "options": ["Back"],
+            "labels": ["tattooShop"]
+        },
+
+        "noTattooCandyYet": {
+            "text": [
+                "'P, please wait a minute' the tattoo shop owner says sheepishly. 'Y, you can't just take that without permission. Unless you're a member of the Thunder Kings, in which case take all you want, just don't kill me.'",
+                "",
+                "You have no idea what this guy's babbling about, but he might just be insane, so you leave the candy alone."
+              ],
+            "options": ["Back"],
+            "labels": ["tattooShop"]
+        },
+
+        "getTattooCandy": {
+            "text": [
+                "Having gained a rapport with the tattoo shop owner, you decide to ask him if you can take a piece of candy from the dish on the counter.",
+                "",
+                "'S, sure. Take whatever you want. It's not like I'm gonna be alive long enough to worry about the loss of revenue that candy represents to my business.'"
+
+              ],
+            "options": ["Next"],
+            "labels": ["candyJunction"]
+        },
+
+        "candyJunction": {
+            "Junction": [
+                ["I0 Owned", "getFreshGum", "cantDecideOnCandy"]
+            ]
+        },
+
+        "cantDecideOnCandy": {
+            "text": [
+                "It all looks so good. You can't decide what you want. You decide to think on the matter and come back once you are able to make an informed decision."
+              ],
+            "options": ["Back"],
+            "labels": ["tattooShop"]
+        },
+
+        "getFreshGum": {
+            "text": [
+                "Remembering how seeing that hardened wad of gum from your car made you hungry for gum, you grab a fresh stick of gum, ready for your chewing pleasure."
+              ],
+            "options": ["Back"],
+            "labels": ["tattooShop"],
+            "commands": [
+                ["Give Item", 1]
+            ]
+        },
+
+                
+        "pharmacy": {
+            "text": [
+                "You enter the pharmacy. You see a man standing at the counter reading the paper and a big, important looking sign.",
+                "",
+                "What do you do?"
+            ],
+            "options": [],
+            "labels": [],
+            "commands": [
+                ["Add Label If","V7 = 0","Ask for some drugs for your son","pharmacyConversation0"],
+                ["Add Label If","V7 = 1","Demand alprazolam","pharmacyConversation1"],
+                ["Add Label If","V7 = 2","Vow to get alprazolam by any means necessary","pharmacyConversation2"],
+                ["Add Label If","V7 = 3","Beg for alprazolam","pharmacyConversation3"],
+                ["Add Label If","V7 = 4","Gloat","gloatToPharmacist"],
+                ["Add Label If","V0 = 7","Read the sign","readSignJunction"],
+                ["Add Label If","V0 = 7","Read the newspaper on the counter","readPaperJunction"],
+                ["Add Label If","V0 = 7","Ask to go to the bathroom","pharmacyBathroomJunction"],
+                ["Add Label If","V8 = 1","Chew gum","gumJunction"],
+                ["Add Label If","V0 = 7","Go outside","outside"]
+            ]
+        },
+
+        "pharmacyBathroomJunction":{
+            "Junction":[
+                ["V1 = 0","noPublicInPharmacy"],
+                ["V1 > 0","threatenToUseBathroom"]
+            ]
+        },
+
+        "gumJunction":{
+            "Junction":[
+                ["V7 = 4","enoughTorture"],
+                ["V2 = 3","whichGum","dontWantChewGumYet"]
+            ]
+        },
+        "whichGum":{
+            "text":[
+                "Which gum do you chew?"
+            ],
+            "options":[],
+            "labels":[],
+            "commands": [
+                ["Add Label If","I0 Owned","The old, hardened gum","chewOldGum"],
+                ["Add Label If","I1 Owned","The fresh gum from the tattoo shop","torturePharmacistForWhatReason"]
+            ]
+
+        },
+
+        "torturePharmacistForWhatReason":{
+            "text":[
+                "You pop that fresh piece of gum in your mouth.",
+                "",
+                "The pharmacist's screaming then permeates every ear drum you've got.",
+                "",
+                "'AAAAAAHHHHHH!!! Stop that noise!!'",
+                "",
+                "'What noise? I'm just chewin' some gum.'",
+                "",
+                "'Can't you read the sign? No gum chewing!'",
+                "",
+                "'Like what?' you cut him off."
+            ],
+            "options":[
+                "'Like not having alprazolam for my son?'",
+                "'Like not being able to use the bathroom?'"
+            ],
+            "labels":[
+                "torturePharmacist2",
+                "usePharmacyBathroom"
+            ],
+            "commands":[
+                ["Remove Item",1],
+                ["Variable Math","V7 = 4"]
+            ]
+        },
+
+        "usePharmacyBathroom":{
+            "text":[
+                "'I store acid in there! It's dangerous!'",
+                "",
+                "'I don't care.'",
+                "",
+                "'It's actually that door.'",
+                "",
+                "'Oh, sorry.'"
+            ],
+            "options":["Next"],
+            "labels":["pharmacyBathroom2"]
+        },
+
+        "pharmacyBathroom2":{
+            "text":[
+                "You sit down on the toilet and take your poop.",
+                "",
+                "Feels good.",
+                "",
+                "Suddenly the water splashes up onto your skin.",
+                "",
+                "It burns away half your butt.",
+                "",
+                "Turns out the pharmacist stores acid in the toilet.",
+                "",
+                "You bleed out.",
+                "",
+                "Game Over."
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "torturePharmacist2":{
+            "text":[
+                "'I can't give you that, I don't wanna go to jail!'",
+                "",
+                "'And I don't want my mouth to stop feeling like I'm skiing high atop Mount Everest.'",
+                "",
+                "The pharmacist pauses to think."
+            ],
+            "options":["Next"],
+            "labels":["torturePharmacist3"]
+        },
+
+        "torturePharmacist3":{
+            "text":[
+                "'You think, I blow bubbles.' you say as you snap snap snap.",
+                "",
+                "'Fine, you win! Take all the alprazolam I have, just stop!'",
+                "",
+                "He throws you a huge bottle of alprazolam.",
+                "",
+                "'Nice doing business with you.'"
+            ],
+            "options":["Leave"],
+            "labels":["outside"],
+            "commands":[
+                ["Give Item",9],
+                ["Variable Math","V1 = 1"]
+            ]
+        },
+
+        "enoughTorture":{
+            "text":[
+                "You already have your alprazolam. You see no need to torture the pharmacist any further."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "dontWantChewGumYet":{
+            "text":[
+                "You should be ashamed of yourself! Why would you deliberately torture another human being like that?",
+                "Maybe if you were desperate enough or hated the guy enough you would, but he's done nothing to deserve that."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "noPublicInPharmacy":{
+            "text":[
+                "'Can I use the bathroom?' you ask.",
+                "",
+                "'I'm sorry. We don't make our bathroom available to the public. We store acid in there for some of our formulary products.'",
+                "",
+                "Seething with rage, you decide to try some other way to get to a bathroom."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "threatenToUseBathroom":{
+            "text":[
+                "'Can I use the bathroom?' you ask.",
+                "",
+                "'Sorry, we don't— Uhh... You don't have any more gum on you, do you?'",
+                "",
+                "You remember you have that old, hardened gum. Do you chew it and blackmail the pharmacist again?"
+            ],
+            "options":[
+                "Yes",
+                "No"
+            ],
+            "labels":[
+                "chewOldGum",
+                "dontChewOldGum"
+            ]
+        },
+
+        "dontChewOldGum":{
+            "text":[
+                "'Well, no.' you say, deciding against putting that bacteria magnet in your body.",
+                "",
+                "'Then you have nothing to threaten me with. We don't allow the public to use our bathroom.'",
+                "",
+                "Jerk..."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "pharmacyConversationJunction":{
+            "Junction":[
+                ["V7 = 0","pharmacyConversation0"],
+                ["V7 = 1","pharmacyConversation1"],
+                ["V7 = 2","pharmacyConversation2"],
+                ["V7 = 3","pharmacyConversation3"],
+                ["V7 = 4","gloatToPharmacist"]
+            ]
+        },
+
+        "pharmacyConversation0":{
+            "text":[
+                "'Hi. I have a question.'",
+                "",
+                "'What do you need?' says the pharmacist.",
+                "",
+                "'My son's gone catatonic. What medicine can I give him?'",
+                "",
+                "'For catatonia, alprazolam is usually good.'",
+                "",
+                "'Very good. I'll take a bottle.'",
+                "",
+                "'Where's your prescription?'",
+                "",
+                "'I don't have one.'",
+                "",
+                "'Sorry. No prescription, no alprazolam.'"
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"],
+            "commands":[
+                ["Variable Math","V7 = 1"]
+            ]
+        },
+
+        "pharmacyConversation1":{
+            "text":[
+                "'I demand you give me some alprazolam now!'",
+                "",
+                "'No.'",
+                "",
+                "'My son is sick in the car! Where's your humanity!?'",
+                "",
+                "'Sorry. I have laws to follow. Come back with a prescription.'"
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"],
+            "commands":[
+                ["Variable Math","V7 = 2"]
+            ]
+        },
+
+        "pharmacyConversation2":{
+            "text":[
+                "You break the skin of your hand with your fingernails.",
+                "",
+                "'In blood I take this oath! I swear I will have alprazolam this day!'",
+                "",
+                "'Making me hear your whining is already inhumane.'"
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"],
+            "commands":[
+                ["Variable Math","V7 = 3"],
+                ["Variable Math","V2 + 1"]
+            ]
+        },
+
+        "pharmacyConversation3":{
+            "text":[
+                "'Pleeeeease can I have some alprazolam?'",
+                "",
+                "'Hmm, nah.'"
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "readSignJunction":{
+            "Junction":[
+                ["V8 = 0","readSignFirstTime"],
+                ["V8 = 1","readSignAgain"]
+            ]
+        },
+
+        "readSignFirstTime":{
+            "text":[
+                "The sign says:",
+                "",
+                "'Please don't chew gum in the pharmacy. The pharmacist is misophonic and it's like torture to him.'"
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"],
+            "commands":[
+                ["Variable Math","V2 + 1"],
+                ["Variable Math","V8 = 1"]
+            ]
+        },
+
+        "readSignAgain":{
+            "text":[
+                "The sign hasn't changed.",
+                "",
+                "'Please don't chew gum in the pharmacy. The pharmacist is misophonic and it's like torture to him.'"
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "gloatToPharmacist":{
+            "text":[
+                "'Did you like that, ya jerk? I got the alprazolam and you could do nothing to stop me!'",
+                "",
+                "'Leave me alone before I call the cops.'",
+                "",
+                "You judge it prudent to listen."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "readPaperJunction":{
+            "Junction":[
+                ["V1 < 2","dontWannaReadPaper"],
+                ["V1 = 2","getHideoutLocation"],
+                ["V1 > 2","alreadyReadPaper"]
+            ]
+        },
+
+        "dontWannaReadPaper":{
+            "text":[
+                "That paper might make for good reading while you take your poop.",
+                "",
+                "But it would probably be more trouble than it's worth to get it away from its rightful owner."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+
+        "getHideoutLocation":{
+            "text":[
+                "That looks like yesterday's paper he's got there!",
+                "",
+                "'Hey! Leave my newspaper alone!' the pharmacist protests.",
+                "",
+                "'Either I read this thing or I'll go buy some more gum!'",
+                "",
+                "You find the address of the Thunder Kings' hideout and memorize it."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"],
+            "commands":[
+                ["Variable Math","V1 = 3"]
+            ]
+        },
+
+        "alreadyReadPaper":{
+            "text":[
+                "You already know the hideout location.",
+                "",
+                "The fate of the world — and your pants — depend on acting on that information."
+            ],
+            "options":["Back"],
+            "labels":["pharmacy"]
+        },
+        "chewOldGum":{
+            "text":[
+                "You chew the old hardened gum.",
+                "",
+                "Years of bacteria enter your body.",
+                "",
+                "Game Over."
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "behindBuildingJunction":{
+            "Junction":[
+                ["V10 < 4","behindBuildingBeforeDeal"],
+                ["V10 = 4","behindBuildingAfterDeal"]
+            ]
+        },
+
+        "behindBuildingBeforeDeal":{
+            "text":[
+                "As you walk behind the building, you see a fat man in a trenchcoat.",
+                "Your intuition tells you he's a drug dealer.",
+                "",
+                "What do you do?"
+            ],
+            "options":[],
+            "labels":[],
+            "commands":[
+                ["Add Label If","V0 = 7","Ask about wares","describeWares"],
+                ["Add Label If","V10 > 0","Make a deal","dealJunction"],
+                ["Add Label If","V0 = 7","Ask to go to the bathroom","dumpsterBathroomGameOver"],
+                ["Add Label If","V0 = 7","Go dumpster diving","dumpsterJunction"],
+                ["Add Label If","V0 = 7","Go back to the front of the building","outside"]
+            ]
+        },
+
+        "behindBuildingAfterDeal":{
+            "text":[
+                "As you walk behind the building, you see a fat man in a trenchcoat.",
+                "He looks really upset.",
+                "",
+                "What do you do?"
+            ],
+            "options":[
+                "Ask what's wrong",
+                "Ask to go to the bathroom",
+                "Go dumpster diving",
+                "Go back to the front of the building"
+            ],
+            "labels":[
+                "dealerIsSad",
+                "dumpsterBathroomGameOver",
+                "dumpsterJunction",
+                "outside"
+            ]
+        },
+
+        "dumpsterJunction":{
+            "Junction":[
+                ["V1 = 2","diedDumpsterDiving","dontWantToDumpsterDive"]
+            ]
+        },
+
+        "dontWantToDumpsterDive":{
+            "text":[
+                "You're quite the fan of the outfit you're currently wearing.",
+                "You don't want to ruin it by getting dumpster juice all over it."
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingJunction"]
+        },
+
+        "diedDumpsterDiving":{
+            "text":[
+                "Wondering if the bodega throws unsold newspapers away, you climb into the dumpster.",
+                "",
+                "Unfortunately there's a family of plague carrying rats inside.",
+                "One bites you and you die instantly.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "describeWares":{
+            "text":[
+                "'You a drug dealer?' you ask.",
+                "",
+                "'I'd ask if you're a cop, but no cop's dumb enough to say anything that dumb.'",
+                "",
+                "'I got pot, cocaine, Mentos, you name it.'",
+                "",
+                "'Mentos is a drug?'",
+                "",
+                "'Nah, I just love it.'"
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingBeforeDeal"],
+            "commands":[
+                ["Variable Math","V10 = 1"]
+            ]
+        },
+
+        "dealerIsSad":{
+            "text":[
+                "'What's wrong?' you ask.",
+                "",
+                "'Damn soda bottle!' the dealer laments.",
+                "",
+                "'It opened in my bag and the soda reacted with my mentos and caused an explosion!'",
+                "",
+                "Not wanting to become his robbery victim, you leave."
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingAfterDeal"]
+        },
+
+        "dumpsterBathroomGameOver":{
+            "text":[
+                "'You wouldn't happen to have a bathroom I could use?'",
+                "",
+                "'Sure. Just go behind the dumpster.'",
+                "",
+                "As you're pulling down your pants a cop walks around the corner.",
+                "",
+                "You get arrested for indecent exposure.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "dealJunction":{
+            "Junction":[
+                ["V10 = 4","wrongSoda"],
+                ["V10 = 3","remindWantDrink"],
+                ["V10 = 2","remindNeedSomethingTrade"],
+                ["V10 = 1","discussPot"]
+            ]
+        },
+
+        "remindNeedSomethingTrade":{
+            "text":[
+                "If you want that pot, you'll need something to trade."
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingBeforeDeal"]
+        },
+
+        "discussPot":{
+            "text":[
+                "Maybe pot could cure your son's catatonia.",
+                "",
+                "'I'll take some pot.'",
+                "",
+                "'Nice! That'll be $35.'",
+                "",
+                "'I don't have that much money.'",
+                "",
+                "'I take trades.'"
+            ],
+            "options":["Next"],
+            "labels":["dealJunctionA"],
+            "commands":[
+                ["Variable Math","V10 = 2"]
+            ]
+        },
+
+        "dealJunctionA":{
+            "Junction":[
+                ["I9 Owned","wantDealSweetened","nothingToTrade"]
+            ]
+        },
+
+        "nothingToTrade":{
+            "text":[
+                "'I don't have anything like that.'",
+                "",
+                "'Then come back when you do.'"
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingBeforeDeal"]
+        },
+
+        "wantDealSweetened":{
+            "text":[
+                "'How about this big bottle of alprazolam?'",
+                "",
+                "'Nice... but I want a cold drink too.'"
+            ],
+            "options":["Next"],
+            "labels":["dealJunctionB"],
+            "commands":[
+                ["Remove Item",9],
+                ["Variable Math","V10 = 3"]
+            ]
+        },
+
+        "remindWantDrink":{
+            "text":[
+                "He still wants a cold drink before completing the deal."
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingBeforeDeal"]
+        },
+
+        "dealJunctionB":{
+            "Junction":[
+                ["I6 Owned","finalizeTrade"],
+                ["V4 = 2","wrongSoda","noSodaToTrade"]
+            ]
+        },
+
+        "noSodaToTrade":{
+            "text":[
+                "You need to bring him a drink first."
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingBeforeDeal"]
+        },
+
+        "wrongSoda":{
+            "text":[
+                "You look at the dealer and then at the nutrition label.",
+                "",
+                "You decide he deserves a better drink.",
+                "",
+                "'I'll be back.'"
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingBeforeDeal"],
+            "commands":[
+                ["Variable Math","V10 = 4"]
+            ]
+        },
+
+        "finalizeTrade":{
+            "text":[
+                "'How about this diet soda?'",
+                "",
+                "'Ugh... fine.'",
+                "",
+                "You trade the soda for pot.",
+                "",
+                "A moment later you hear an explosion from the mentos in his bag."
+            ],
+            "options":["Back"],
+            "labels":["behindBuildingAfterDeal"],
+            "commands":[
+                ["Remove Item",6],
+                ["Give Item",10],
+                ["Variable Math","V10 = 4"],
+                ["Variable Math","V4 = 3"]
+            ]
+        },
+
+        "finalOperation":{
+        "text":[
+            "'Ok, I got the location. It's at 5154 Opaque St.' you tell your son.",
+            "",
+            "'Converting to coordinates now... Got it!' he says.",
+            "",
+            "You both turn your attention to the bodega.",
+            "He's going to have to go in there to hack the computer, but you're going to have to do it at the right time.",
+            "",
+            "What do you do?"
+        ],
+        "options":[
+            "Send your son in now",
+            "Go in first and act like a jerk as cover",
+            "Wait"
+        ],
+        "labels":[
+            "sonPremature",
+            "jerkPremature",
+            "finalOperation2"
+        ],
+        "commands": [
+            ["Play Music", "finaloperation.wav"]
+        ]
+    },
+
+        "sonPremature":{
+            "text":[
+                "'Now! Get in there!' you bark at your son.",
+                "",
+                "'Alright, take it easy.'",
+                "",
+                "Almost as soon as he walks in, you hear a gunshot.",
+                "",
+                "Looking up, you see the merchant dragging your son's corpse off to the back of the store.",
+                "",
+                "Maybe you should've sized up the situation better before making him rush in.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "jerkPremature":{
+            "text":[
+                "'You wait here. I'll go in and cause a diversion.'",
+                "",
+                "'Ok.'",
+                "",
+                "You go in and start yelling at the clerk about how the soda you bought tasted like swill!",
+                "",
+                "'That didn't taste like swill and I know swill! I feed it to the pigs on my ranch every day.'",
+                "",
+                "You keep yelling, but the clerk looks off to the side.",
+                "",
+                "'What are you doing!? Look at me!' you demand.",
+                "",
+                "'Naw, when someone's a jerk to me, I don't look at them.'",
+                "",
+                "Just then he notices your son sneaking in.",
+                "",
+                "He grabs a shotgun and shoots him, then shoots you.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "finalOperation2":{
+            "text":[
+                "Waiting a bit, you see the drug dealer position himself on the side of the building.",
+                "",
+                "What do you do?"
+            ],
+            "options":[
+                "Send your son in now",
+                "Go in first and act like a jerk as cover",
+                "Wait"
+            ],
+            "labels":[
+                "sonLessPremature",
+                "jerkLessPremature",
+                "finalOperation3"
+            ]
+        },
+
+        "sonLessPremature":{
+            "text":[
+                "'Now! Get in there!' you bark.",
+                "",
+                "'Alright, take it easy.'",
+                "",
+                "Your son tries to run into the bathroom but the bodega owner finds him and kills him.",
+                "",
+                "As the owner drags the body away, the drug dealer sneaks in and robs the place.",
+                "",
+                "You wish your son had used the dealer as cover instead of the other way around.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "jerkLessPremature":{
+            "text":[
+                "'You wait here. I'll cause a diversion.'",
+                "",
+                "You go in and start yelling about the soda tasting like swill.",
+                "",
+                "Suddenly the drug dealer runs in and points a gun at the owner.",
+                "",
+                "'Pipe down buddy!' you say.",
+                "",
+                "'Shut up!' the dealer yells back.",
+                "",
+                "While you two yell at each other the owner pulls a shotgun and shoots both of you.",
+                "",
+                "Your son actually succeeded in rerouting the missile...",
+                "",
+                "But you're dead.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "finalOperation3":{
+            "text":[
+                "Waiting a bit more, you see the drug dealer go into the bodega and pull a gun on the owner.",
+                "",
+                "What do you do?"
+            ],
+            "options":[
+                "Send your son in now",
+                "Go in first and act like a jerk as cover",
+                "Wait"
+            ],
+            "labels":[
+                "ending1",
+                "jerkLate",
+                "missileLaunch"
+            ]
+        },
+
+        "missileLaunch":{
+            "text":[
+                "'Wait for iiiiiit...' you say.",
+                "",
+                "But you waited too long.",
+                "",
+                "The missile launches and flies toward the peace conference.",
+                "",
+                "Now not only will your pants go to poop, but the whole world might too.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "jerkLate":{
+            "text":[
+                "You walk into the bodega just as the drug dealer is leaving after the robbery.",
+                "",
+                "You're blocking his escape route.",
+                "",
+                "He shoots you.",
+                "",
+                "Game Over"
+            ],
+            "commands":[
+                ["Game Over"],
+                ["Stop Music"]
+            ]
+        },
+
+        "ending1":{
+            "text":[
+                "Your son flawlessly sneaks into the bodega while the owner is distracted.",
+                "",
+                "You run to the tattoo shop.",
+                "",
+                "'I'm going to the bathroom!' you say.",
+                "",
+                "'But I keep needing it!' the owner says.",
+                "",
+                "'Turn on the news.' you say."
+            ],
+            "options":["Next"],
+            "labels":["ending2"]
+        },
+
+        "ending2":{
+            "text":[
+                "The news reports that a building outside the city was destroyed by a missile.",
+                "",
+                "It was the Thunder Kings' hideout.",
+                "",
+                "'Was this your doing?' the tattoo artist asks.",
+                "",
+                "But you can't hear him.",
+                "",
+                "You're too busy taking the best poop of your life.",
+                "",
+                "Suddenly there's a knock on the bathroom door."
+            ],
+            "options":["Next"],
+            "labels":["ending3"]
+        },
+
+        "ending3":{
+            "text":[
+                "'Yes?'",
+                "",
+                "'Operation complete.' your son says.",
+                "",
+                "You, the tattoo artist, and the whole world breathe a sigh of relief.",
+                "",
+                "The End."
+            ]
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

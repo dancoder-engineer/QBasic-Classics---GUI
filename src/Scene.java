@@ -178,6 +178,7 @@ public class Scene {
                 String song = cmdArray.get(1).getAsString();
                 if (!gameStates[0].getMusic().equals(song)) {
                     gameStates[0].setMusic(song);
+                    System.out.println(song);
                     music.play(song);
                 }
                 break;
