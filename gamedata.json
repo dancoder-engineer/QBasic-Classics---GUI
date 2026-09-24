@@ -70,7 +70,7 @@
             ],
             "labels": ["tattooShop", "bodega", "pharmacy", "behindBuildingJunction", "carMain"],
             "commands": [
-                ["Stop Music"],
+                ["Play Music", "outside.wav"],
                 ["Checkpoint"]
             ]
         },
