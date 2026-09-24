@@ -55,7 +55,7 @@
 
 
         "outside": {
-            "Image": "outside.png",
+            "image": "outside.png",
             "text": [
                 "You are now in front of the shopping center. Before you lies a tattoo shop, a bodega, and a pharmacy. You can also go back into your car or behind the shopping center if you want.",
                 "",
@@ -522,6 +522,7 @@
               ],
             "options": [],
             "labels": [],
+            "image" : "bodega.png",
             "commands": [
                 ["Play Music", "bodega.wav"],
                 ["Add Label If", "V3 = 1", "Show your lottery ticket to the clerk", "mustCheckMachine"],
@@ -620,7 +621,8 @@
                 "stealWhat",
                 "bodegaBathroomDeath",
                 "phoneCallScene"
-            ]
+            ],
+            "image": "aloneInStore.png"
         },
 
         "stealWhat": {
@@ -1027,7 +1029,8 @@
                 ["Add Label If","V0 = 7","Ask to go to the bathroom","pharmacyBathroomJunction"],
                 ["Add Label If","V8 = 1","Chew gum","gumJunction"],
                 ["Add Label If","V0 = 7","Go outside","outside"]
-            ]
+            ],
+            "image": "pharmacy.png"
         },
 
         "pharmacyBathroomJunction":{
@@ -1081,7 +1084,8 @@
             "commands":[
                 ["Remove Item",1],
                 ["Variable Math","V7 = 4"]
-            ]
+            ],
+            "image": "pharmacistagony.png"
         },
 
         "usePharmacyBathroom":{

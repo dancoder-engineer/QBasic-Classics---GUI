@@ -88,8 +88,8 @@ public class Scene {
         scene = gameData.getAsJsonObject(sceneName);
         gameStates[0].setLabel(sceneName);
         
-        if (scene.has("Image")) {
-            String imgName = scene.get("Image").getAsString();
+        if (scene.has("image")) { 
+            String imgName = scene.get("image").getAsString();
             gameStates[0].setImage(imgName);
         }
 
@@ -178,7 +178,6 @@ public class Scene {
                 String song = cmdArray.get(1).getAsString();
                 if (!gameStates[0].getMusic().equals(song)) {
                     gameStates[0].setMusic(song);
-                    System.out.println(song);
                     music.play(song);
                 }
                 break;
