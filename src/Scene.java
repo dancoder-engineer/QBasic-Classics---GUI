@@ -2,6 +2,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
+import javax.swing.JButton;
 
 public class Scene {
 
@@ -14,6 +15,7 @@ public class Scene {
     private String[] outText = new String[10];
     private final AudioPlayer music = new AudioPlayer(true);
     private final AudioPlayer sfx = new AudioPlayer(false);
+    JButton[] buttons;
 
     public Scene() {
 
@@ -152,6 +154,8 @@ public class Scene {
                 labels.clear();
                 labels.add(gameStates[1].getLabel());
                 gameStates[0].updateCheckpoint(gameStates[1]);
+                outText[commandNum + 1] = "Return to Checkpoint";
+                commandNum++;
                 break;
             case "Variable Math":
                 if (doMath) { gameStates[0].variableMath(cmdArray.get(1).getAsString());}
