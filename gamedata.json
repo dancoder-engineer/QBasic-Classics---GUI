@@ -1033,7 +1033,8 @@
                 ["Add Label If","V0 = 7","Read the newspaper on the counter","readPaperJunction"],
                 ["Add Label If","V0 = 7","Ask to go to the bathroom","pharmacyBathroomJunction"],
                 ["Add Label If","V8 = 1","Chew gum","gumJunction"],
-                ["Add Label If","V0 = 7","Go outside","outside"]
+                ["Add Label If","V0 = 7","Go outside","outside"],
+                ["Play Music", "pharmacy.wav"]
             ],
             "image": "pharmacy.png"
         },
@@ -1444,7 +1445,7 @@
                 "dumpsterJunction",
                 "outside"
             ],
-            "image": "behind.png",
+            "image": "behindthebuilding.png",
             "commands": [
                 ["Play Music", "behindthebuilding.wav"]
             ]
