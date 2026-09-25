@@ -87,9 +87,11 @@
             ],
             "labels": ["gloveCompartmentJunction", "seatJunction", "sonJunction"],
             "commands": [
+                ["Play Music", "inthecar.wav"],
                 ["Add Label If", "V1 = 1", "Medicate your son", "whichDrug"],
                 ["Add Label If", "V0 = 7", "Go back outside", "outside"]
-            ]
+            ],
+            "image": "carMain.png"
 
         },
 
@@ -105,7 +107,8 @@
                 "You try talking to your son, but he's too catatonic to speak at the moment."
               ],
             "options": ["Back"],
-            "labels": ["carMain"]
+            "labels": ["carMain"],
+            "image": "soncatatonic.png"
         },
 
         "whichDrug": {
@@ -454,7 +457,8 @@
                 "'Come back when you know where the hideout is and I'll hack that computer."
               ],
             "options": ["Back"],
-            "labels": ["carMain"]
+            "labels": ["carMain"],
+            "image": "sonawake.png"
         },
 
         "gloveCompartmentJunction": {
@@ -852,7 +856,8 @@
                 ["Add Label If", "V0 = 7", "Ask to use the bathroom", "tryTattooShopBathroom"],
                 ["Add Label If", "V0 = 7", "Try to get a tattoo", "tryTattoo"],
                 ["Add Label If", "V0 = 7", "Go back outside", "outside"]
-            ]
+            ],
+            "image": "tattooshop.png"
         },
 
         "tryTattooShopBathroom": {
@@ -1413,8 +1418,11 @@
                 ["Add Label If","V10 > 0","Make a deal","dealJunction"],
                 ["Add Label If","V0 = 7","Ask to go to the bathroom","dumpsterBathroomGameOver"],
                 ["Add Label If","V0 = 7","Go dumpster diving","dumpsterJunction"],
-                ["Add Label If","V0 = 7","Go back to the front of the building","outside"]
-            ]
+                ["Add Label If","V0 = 7","Go back to the front of the building","outside"],
+                ["Play Music", "behindthebuilding.wav"]
+            ],
+            "image": "behindthebuilding.png"
+                
         },
 
         "behindBuildingAfterDeal":{
@@ -1435,6 +1443,10 @@
                 "dumpsterBathroomGameOver",
                 "dumpsterJunction",
                 "outside"
+            ],
+            "image": "behind.png",
+            "commands": [
+                ["Play Music", "behindthebuilding.wav"]
             ]
         },
 
@@ -1474,11 +1486,11 @@
                 "",
                 "'I'd ask if you're a cop, but no cop's dumb enough to say anything that dumb.'",
                 "",
-                "'I got pot, cocaine, Mentos, you name it.'",
+                "'I got pot, cocaine, ExplodoMints, you name it.'",
                 "",
-                "'Mentos is a drug?'",
+                "'ExplodoMints is a drug?'",
                 "",
-                "'Nah, I just love it.'"
+                "'Nah, I just love them.'"
             ],
             "options":["Back"],
             "labels":["behindBuildingBeforeDeal"],
@@ -1493,7 +1505,7 @@
                 "",
                 "'Damn soda bottle!' the dealer laments.",
                 "",
-                "'It opened in my bag and the soda reacted with my mentos and caused an explosion!'",
+                "'It opened in my bag and the soda reacted with my ExplodoMints and caused an explosion!'",
                 "",
                 "Not wanting to become his robbery victim, you leave."
             ],
@@ -1631,7 +1643,7 @@
                 "",
                 "You trade the soda for pot.",
                 "",
-                "A moment later you hear an explosion from the mentos in his bag."
+                "A moment later you hear an explosion from the ExplodoMints in his bag."
             ],
             "options":["Back"],
             "labels":["behindBuildingAfterDeal"],
@@ -1666,7 +1678,8 @@
         ],
         "commands": [
             ["Play Music", "finaloperation.wav"]
-        ]
+        ],
+        "image": "sonawake.png"
     },
 
         "sonPremature":{
