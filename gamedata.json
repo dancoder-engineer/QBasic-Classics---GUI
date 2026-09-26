@@ -684,7 +684,10 @@
                 "With that, the caller hangs up, and even though the shock of hearing what you just did renders you barely able to move your body, you manage to hang up the phone you were using as well."
               ],
             "options": ["Next"],
-            "labels": ["getMoney"]
+            "labels": ["getMoney"],
+            "commands": [
+                ["Play Music", "terroristplot.wav"]
+            ]
         },
 
         "getMoney": {
@@ -701,7 +704,8 @@
                 ["Give Item", 3],
                 ["Remove Item", 2],
                 ["Variable Math", "V3 = 2"],
-                ["Variable Math", "V4 = 1"]
+                ["Variable Math", "V4 = 1"],
+                ["Play Music", "bodega.wav"]
             ]
         },
 
